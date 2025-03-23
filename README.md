@@ -5,6 +5,8 @@ A library specifically design to tame the pthread_cond_timedwait functon.
  * lastly provide utility functions to work with timespec.
 
 ## Setup instructions
+**Install dependencies :**
+ * [Cutlery](https://github.com/RohanVDvivedi/Cutlery)
 
 **Download source code :**
  * `git clone https://github.com/RohanVDvivedi/PosixUtils.git`

@@ -1,5 +1,5 @@
-#ifndef PRINT_TEMP_H
-#define PRINT_TEMP_H
+#ifndef PTHREAD_COND_UTILS_H
+#define PTHREAD_COND_UTILS_H
 
 #include<pthread.h>
 

@@ -22,6 +22,8 @@ static inline uint64_t timespec_to_nanoseconds(struct timespec t);
 
 static inline int timespec_compare(struct timespec t1, struct timespec t2);
 
+static inline int timespec_is_zero(struct timespec t);
+
 // t1 + t2 -> assumes no overflow
 static inline struct timespec timespec_add(struct timespec t1, struct timespec t2);
 // t1 - t2 -> asumes no underflow
@@ -84,6 +86,11 @@ static inline int timespec_compare(struct timespec t1, struct timespec t2)
 	if(t1.tv_sec != t2.tv_sec)
 		return compare_numbers(t1.tv_sec, t2.tv_sec);
 	return compare_numbers(t1.tv_nsec, t2.tv_nsec);
+}
+
+static inline int timespec_is_zero(struct timespec t)
+{
+	return t.tv_sec == 0 && t.tv_nsec == 0;
 }
 
 #endif

@@ -1,13 +1,16 @@
-# c_template_application
-A template for all of my c projects.
+# PosixUtils
+A library specifically design to tame the pthread_cond_timedwait functon.
+ * forcing users to use CLOCK_MONOTONIC instead of CLOCK_REALTIME
+ * rely and get the time they waited on the condition variable.
+ * lastly provide utility functions to work with timespec.
 
 ## Setup instructions
 
 **Download source code :**
- * `git clone https://github.com/RohanVDvivedi/c_template_application.git`
+ * `git clone https://github.com/RohanVDvivedi/PosixUtils.git`
 
 **Build from source :**
- * `cd c_template_application`
+ * `cd PosixUtils`
  * `make clean all`
 
 **Install from the build :**
@@ -23,5 +26,5 @@ A template for all of my c projects.
 ## Instructions for uninstalling library
 
 **Uninstall :**
- * `cd c_template_application`
+ * `cd PosixUtils`
  * `sudo make uninstall`

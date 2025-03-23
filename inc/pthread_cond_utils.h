@@ -4,6 +4,8 @@
 #include<stdint.h>
 #include<pthread.h>
 
+#include<timespec_utils.h>
+
 // inits a pthread_cond_t with a CLOCK_MONOTONIC
 static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond);
 
@@ -57,5 +59,23 @@ int pthread_cond_timedwait_for_timespec(pthread_cond_t *restrict cond, pthread_m
 
 	return result;
 }
+
+#define pthread_cond_timedwait_for_(unit)                                                                                                                  \
+static inline int pthread_cond_timedwait_for_ ## unit (pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_ ## unit)        \
+{                                                                                                                                                          \
+	struct timespec duration = timespec_from_ ## unit(*duration_ ## unit);                                                                                 \
+                                                                                                                                                           \
+	int result = pthread_cond_timedwait_for_timespec(cond, mutex, &duration);                                                                              \
+                                                                                                                                                           \
+	(*duration_ ## unit) = timespec_to_ ## unit(duration);                                                                                                 \
+                                                                                                                                                           \
+	return result;                                                                                                                                         \
+}                                                                                                                                                          \
+// new line break here
+
+pthread_cond_timedwait_for_(seconds)
+pthread_cond_timedwait_for_(milliseconds)
+pthread_cond_timedwait_for_(microseconds)
+pthread_cond_timedwait_for_(nanoseconds)
 
 #endif

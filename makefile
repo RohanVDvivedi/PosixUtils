@@ -68,6 +68,7 @@ ${BIN_DIR}/${BINARY} : ./main.c ${LIB_DIR}/${LIBRARY} | ${BIN_DIR}
 #all : ${BIN_DIR}/${BINARY}
 # else if your project is only a library use this
 #all : ${LIB_DIR}/${LIBRARY}
+all : ; #empty rule because this is a header only library
 
 # clean all the build, in this directory
 clean :

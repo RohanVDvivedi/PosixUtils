@@ -4,6 +4,9 @@
 #include<stdint.h>
 #include<time.h>
 
+#include<cutlery_stds.h>
+#include<cutlery_math.h>
+
 #define MILLISECONDS_IN_SECOND          1000LL
 #define MICROSECONDS_IN_SECOND          1000000LL
 #define NANOSECONDS_IN_SECOND           1000000000LL

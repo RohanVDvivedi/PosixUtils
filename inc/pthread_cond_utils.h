@@ -20,13 +20,13 @@ static inline int pthread_cond_timedwait_for_nanoseconds(pthread_cond_t *restric
 static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond)
 {
 	pthread_condattr_t attr;
-	pthread_cond_condattr_init(&attr);
+	pthread_condattr_init(&attr);
 
 	pthread_condattr_setclock(&attr, CLOCK_MONOTONIC);
 
 	int result = pthread_cond_init(cond, &attr);
 
-	pthread_cond_condattr_destroy(&attr);
+	pthread_condattr_destroy(&attr);
 
 	return result;
 }

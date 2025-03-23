@@ -103,4 +103,19 @@ static inline struct timespec timespec_add(struct timespec t1, struct timespec t
 	};
 }
 
+static inline struct timespec timespec_sub(struct timespec t1, struct timespec t2)
+{
+	int64_t secs = t1.tv_sec - t2.tv_sec;
+	int64_t nsecs = t1.tv_nsec - t2.tv_nsec;
+	if(nsecs < 0) // borrow from secs
+	{
+		secs--;
+		nsecs += NANOSECONDS_IN_SECOND;
+	}
+	return struct timespec{
+		tv_sec = secs,
+		tv_nsec = nsecs,
+	};
+}
+
 #endif

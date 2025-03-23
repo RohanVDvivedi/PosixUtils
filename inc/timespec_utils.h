@@ -93,4 +93,14 @@ static inline int timespec_is_zero(struct timespec t)
 	return t.tv_sec == 0 && t.tv_nsec == 0;
 }
 
+static inline struct timespec timespec_add(struct timespec t1, struct timespec t2)
+{
+	uint64_t secs = t1.tv_sec + t2.tv_sec;
+	uint64_t nsecs = t1.tv_nsec + t2.tv_nsec;
+	return struct timespec{
+		tv_sec = secs + (nsecs / NANOSECONDS_IN_SECOND),
+		tv_nsec = (nsecs % NANOSECONDS_IN_SECOND),
+	};
+}
+
 #endif

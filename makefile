@@ -67,7 +67,7 @@ ${BIN_DIR}/${BINARY} : ./main.c ${LIB_DIR}/${LIBRARY} | ${BIN_DIR}
 # to build the binary along with the library, if your project has a binary aswell
 #all : ${BIN_DIR}/${BINARY}
 # else if your project is only a library use this
-all : ${LIB_DIR}/${LIBRARY}
+#all : ${LIB_DIR}/${LIBRARY}
 
 # clean all the build, in this directory
 clean :

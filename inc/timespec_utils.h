@@ -38,12 +38,25 @@ static inline struct timespec timespec_from_seconds(uint64_t seconds)
 static inline struct timespec timespec_from_milliseconds(uint64_t milliseconds)
 {
 	return struct timespec{
-		.tv_sec = seconds,
-		.tv_nsec = 0,
+		.tv_sec = milliseconds / MILLISECONDS_IN_SECOND,
+		.tv_nsec = (milliseconds % MILLISECONDS_IN_SECOND) * NANOSECONDS_IN_MILLISECOND,
 	};
 }
 
-static inline struct timespec timespec_from_microseconds(uint64_t microseconds);
-static inline struct timespec timespec_from_nanoseconds(uint64_t nanoseconds);
+static inline struct timespec timespec_from_microseconds(uint64_t microseconds)
+{
+	return struct timespec{
+		.tv_sec = microseconds / MICROSECONDS_IN_SECOND,
+		.tv_nsec = (microseconds % MICROSECONDS_IN_SECOND) * NANOSECONDS_IN_MICROSECOND,
+	};
+}
+
+static inline struct timespec timespec_from_nanoseconds(uint64_t nanoseconds)
+{
+	return struct timespec{
+		.tv_sec = nanoseconds / NANOSECONDS_IN_SECOND,
+		.tv_nsec = (nanoseconds % NANOSECONDS_IN_SECOND),
+	};
+}
 
 #endif

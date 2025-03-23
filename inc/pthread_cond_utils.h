@@ -1,6 +1,7 @@
 #ifndef PTHREAD_COND_UTILS_H
 #define PTHREAD_COND_UTILS_H
 
+#include<stdint.h>
 #include<pthread.h>
 
 // inits a pthread_cond_t with a CLOCK_MONOTONIC

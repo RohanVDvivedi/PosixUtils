@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<inttypes.h>
 
 #include<timespec_utils.h>
 #include<pthread_cond_utils.h>
@@ -40,7 +41,7 @@ void time_and_wait(uint64_t duration, int unit)
 			pthread_cond_timedwait_for_microseconds(&c, &m, &duration);
 			break;
 		}
-		case SECS:
+		case NSECS:
 		{
 			printf("%"PRIu64" waiting for nanosecs\n", duration);
 			pthread_cond_timedwait_for_nanoseconds(&c, &m, &duration);

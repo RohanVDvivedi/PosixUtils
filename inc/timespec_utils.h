@@ -98,8 +98,8 @@ static inline struct timespec timespec_add(struct timespec t1, struct timespec t
 	uint64_t secs = t1.tv_sec + t2.tv_sec;
 	uint64_t nsecs = t1.tv_nsec + t2.tv_nsec;
 	return (struct timespec){
-		tv_sec = secs + (nsecs / NANOSECONDS_IN_SECOND),
-		tv_nsec = (nsecs % NANOSECONDS_IN_SECOND),
+		.tv_sec = secs + (nsecs / NANOSECONDS_IN_SECOND),
+		.tv_nsec = (nsecs % NANOSECONDS_IN_SECOND),
 	};
 }
 
@@ -113,8 +113,8 @@ static inline struct timespec timespec_sub(struct timespec t1, struct timespec t
 		nsecs += NANOSECONDS_IN_SECOND;
 	}
 	return (struct timespec){
-		tv_sec = secs,
-		tv_nsec = nsecs,
+		.tv_sec = secs,
+		.tv_nsec = nsecs,
 	};
 }
 

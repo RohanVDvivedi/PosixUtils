@@ -71,7 +71,7 @@ int main()
 	time_and_wait(1, USECS);
 	time_and_wait(1, NSECS);
 
-	time_and_wait(250, SECS);
+	time_and_wait(7, SECS);
 	time_and_wait(250, MSECS);
 	time_and_wait(250, USECS);
 	time_and_wait(250, NSECS);

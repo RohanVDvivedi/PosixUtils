@@ -64,6 +64,52 @@ void time_and_wait(uint64_t duration, int unit)
 
 int main()
 {
+	struct timespec t1 = {.tv_sec = 5, .tv_nsec = 234567890};
+
+	{
+		struct timespec t2 = {.tv_sec = 6, .tv_nsec = 789012345};
+		printf("t2 => %ld.%09ld\n\n", t2.tv_sec, t2.tv_nsec);
+		printf("t1 => %ld.%09ld\n\n", t1.tv_sec, t1.tv_nsec);
+		struct timespec t_diff = timespec_sub(t2, t1);
+		printf("Dt => %ld.%09ld\n\n", t_diff.tv_sec, t_diff.tv_nsec);
+		struct timespec tf = timespec_add(t1, t_diff);
+		printf("tf => %ld.%09ld\n\n", tf.tv_sec, tf.tv_nsec);
+		printf("\n");
+	}
+
+	{
+		struct timespec t2 = {.tv_sec = 6, .tv_nsec = 132569478};
+		printf("t2 => %ld.%09ld\n\n", t2.tv_sec, t2.tv_nsec);
+		printf("t1 => %ld.%09ld\n\n", t1.tv_sec, t1.tv_nsec);
+		struct timespec t_diff = timespec_sub(t2, t1);
+		printf("Dt => %ld.%09ld\n\n", t_diff.tv_sec, t_diff.tv_nsec);
+		struct timespec tf = timespec_add(t1, t_diff);
+		printf("tf => %ld.%09ld\n\n", tf.tv_sec, tf.tv_nsec);
+		printf("\n");
+	}
+
+	{
+		struct timespec t2 = {.tv_sec = 8, .tv_nsec = 789012345};
+		printf("t2 => %ld.%09ld\n\n", t2.tv_sec, t2.tv_nsec);
+		printf("t1 => %ld.%09ld\n\n", t1.tv_sec, t1.tv_nsec);
+		struct timespec t_diff = timespec_sub(t2, t1);
+		printf("Dt => %ld.%09ld\n\n", t_diff.tv_sec, t_diff.tv_nsec);
+		struct timespec tf = timespec_add(t1, t_diff);
+		printf("tf => %ld.%09ld\n\n", tf.tv_sec, tf.tv_nsec);
+		printf("\n");
+	}
+
+	{
+		struct timespec t2 = {.tv_sec = 8, .tv_nsec = 132569478};
+		printf("t2 => %ld.%09ld\n\n", t2.tv_sec, t2.tv_nsec);
+		printf("t1 => %ld.%09ld\n\n", t1.tv_sec, t1.tv_nsec);
+		struct timespec t_diff = timespec_sub(t2, t1);
+		printf("Dt => %ld.%09ld\n\n", t_diff.tv_sec, t_diff.tv_nsec);
+		struct timespec tf = timespec_add(t1, t_diff);
+		printf("tf => %ld.%09ld\n\n", tf.tv_sec, tf.tv_nsec);
+		printf("\n");
+	}
+
 	pthread_cond_init_with_monotonic_clock(&c);
 
 	time_and_wait(1, SECS);

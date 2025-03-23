@@ -71,17 +71,17 @@ static inline uint64_t timespec_to_seconds(struct timespec t)
 
 static inline uint64_t timespec_to_milliseconds(struct timespec t)
 {
-	return t.tv_sec * MILLISECONDS_IN_SECOND + t.tv_nsec / NANOSECONDS_IN_MILLISECOND;
+	return (t.tv_sec * MILLISECONDS_IN_SECOND) + (t.tv_nsec / NANOSECONDS_IN_MILLISECOND);
 }
 
 static inline uint64_t timespec_to_microseconds(struct timespec t)
 {
-	return t.tv_sec * MICROSECONDS_IN_SECOND + t.tv_nsec / NANOSECONDS_IN_MICROSECOND;
+	return (t.tv_sec * MICROSECONDS_IN_SECOND) + (t.tv_nsec / NANOSECONDS_IN_MICROSECOND);
 }
 
 static inline uint64_t timespec_to_nanoseconds(struct timespec t)
 {
-	return t.tv_sec * NANOSECONDS_IN_SECOND + t.tv_nsec;
+	return (t.tv_sec * NANOSECONDS_IN_SECOND) + t.tv_nsec;
 }
 
 static inline int timespec_compare(struct timespec t1, struct timespec t2)

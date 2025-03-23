@@ -18,10 +18,10 @@ A library specifically design to tame the pthread_cond_timedwait functon.
  * ***Once you have installed from source, you may discard the build by*** `make clean`
 
 ## Using The library
- * add `-lcapp` linker flag, while compiling your application
+ * add `-lposixutils` linker flag, while compiling your application
  * do not forget to include appropriate public api headers as and when needed. this includes
-   * `#include<capp.h>`
-   * `#include<print_temp.h>`
+   * `#include<pthread_cond_utils.h>`
+   * `#include<timespec_utils.h>`
 
 ## Instructions for uninstalling library
 

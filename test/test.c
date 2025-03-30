@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<inttypes.h>
 
-#include<timespec_utils.h>
-#include<pthread_cond_utils.h>
+#include<posixutils/timespec_utils.h>
+#include<posixutils/pthread_cond_utils.h>
 
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t c;

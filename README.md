@@ -22,8 +22,8 @@ A library specifically design to tame the pthread_cond_timedwait functon.
 ## Using The library
  * add `-lpthread` linker flag, while compiling your application
  * do not forget to include appropriate public api headers as and when needed. this includes
-   * `#include<pthread_cond_utils.h>`
-   * `#include<timespec_utils.h>`
+   * `#include<posix_utils/pthread_cond_utils.h>`
+   * `#include<posix_utils/timespec_utils.h>`
 
 ## Instructions for uninstalling library
 

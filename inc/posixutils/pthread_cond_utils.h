@@ -4,7 +4,7 @@
 #include<stdint.h>
 #include<pthread.h>
 
-#include<timespec_utils.h>
+#include<posixutils/timespec_utils.h>
 
 // inits a pthread_cond_t with a CLOCK_MONOTONIC
 static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond);

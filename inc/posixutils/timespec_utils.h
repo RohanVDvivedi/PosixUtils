@@ -98,8 +98,8 @@ static inline int timespec_is_zero(struct timespec t)
 
 static inline struct timespec timespec_add(struct timespec t1, struct timespec t2)
 {
-	uint64_t secs = t1.tv_sec + t2.tv_sec;
-	uint64_t nsecs = t1.tv_nsec + t2.tv_nsec;
+	uint64_t secs = ((uint64_t)(t1.tv_sec)) + ((uint64_t)(t2.tv_sec));
+	uint64_t nsecs = ((uint64_t)(t1.tv_nsec)) + ((uint64_t)(t2.tv_nsec));
 	return (struct timespec){
 		.tv_sec = secs + (nsecs / NANOSECONDS_IN_SECOND),
 		.tv_nsec = (nsecs % NANOSECONDS_IN_SECOND),
@@ -108,8 +108,8 @@ static inline struct timespec timespec_add(struct timespec t1, struct timespec t
 
 static inline struct timespec timespec_sub(struct timespec t1, struct timespec t2)
 {
-	int64_t secs = t1.tv_sec - t2.tv_sec;
-	int64_t nsecs = t1.tv_nsec - t2.tv_nsec;
+	int64_t secs = ((int64_t)(t1.tv_sec)) - ((int64_t)(t2.tv_sec));
+	int64_t nsecs = ((int64_t)(t1.tv_nsec)) - ((int64_t)(t2.tv_nsec));
 	if(nsecs < 0) // borrow from secs
 	{
 		secs--;

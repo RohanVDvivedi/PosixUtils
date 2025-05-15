@@ -11,6 +11,7 @@ static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond);
 
 // below functions can be used to performed a timedwait on a condition variable for a duration given as its last parameter
 // below functions assume that the condition variable is initialized with CLOCK_MONOTONIC, possibly using the above function (pthread_cond_init_with_monotonic_clock)
+// please be sure that duration will be updated to the time remaining from the provided duration, for you to waited on in your next call
 static inline int pthread_cond_timedwait_for_timespec(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, struct timespec* duration);
 static inline int pthread_cond_timedwait_for_seconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_seconds);
 static inline int pthread_cond_timedwait_for_milliseconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_milliseconds);

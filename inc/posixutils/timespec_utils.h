@@ -3,6 +3,7 @@
 
 #include<stdint.h>
 #include<time.h>
+#include<sys/time.h>
 
 #include<cutlery/cutlery_stds.h>
 #include<cutlery/cutlery_math.h>

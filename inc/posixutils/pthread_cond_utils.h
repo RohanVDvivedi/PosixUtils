@@ -18,6 +18,12 @@ static inline int pthread_cond_timedwait_for_milliseconds(pthread_cond_t *restri
 static inline int pthread_cond_timedwait_for_microseconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_microseconds);
 static inline int pthread_cond_timedwait_for_nanoseconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_nanoseconds);
 
+// you may use all possible uint64_t values for the above pthread_cond_timedwait_for_*seconds() functions
+// except the two given below, I would suggest you to instead use them as special values for the timeout in the duration_*seconds parameter
+// and never ever pass them to the above 4 functions
+#define NON_BLOCKING   UINT64_C(0)
+#define BLOCKING       UINT64_MAX
+
 static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond)
 {
 	pthread_condattr_t attr;

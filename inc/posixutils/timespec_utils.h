@@ -121,4 +121,23 @@ static inline struct timespec timespec_sub(struct timespec t1, struct timespec t
 	};
 }
 
+// additional function
+// some older functions in posix take input as timeval instead of timespec, and a conversion is simple as below
+
+static inline struct timeval timespec_to_timeval(struct timespec t)
+{
+	return (struct timeval){
+		.tv_sec = t.tv_sec,
+		.tv_usec = t.tv_nsec / 1000LL,
+	};
+}
+
+static inline struct timespec timeval_to_timespec(struct timeval t)
+{
+	return (struct timespec){
+		.tv_sec = t.tv_sec,
+		.tv_nsec = t.tv_usec * 1000LL,
+	};
+}
+
 #endif

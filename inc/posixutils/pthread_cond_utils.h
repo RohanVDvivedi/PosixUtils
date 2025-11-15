@@ -18,12 +18,6 @@ static inline int pthread_cond_timedwait_for_milliseconds(pthread_cond_t *restri
 static inline int pthread_cond_timedwait_for_microseconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_microseconds);
 static inline int pthread_cond_timedwait_for_nanoseconds(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_nanoseconds);
 
-// you may use all possible uint64_t values for the above pthread_cond_timedwait_for_*seconds() functions
-// except the two given below, I would suggest you to instead use them as special values for the timeout in the duration_*seconds parameter
-// and never ever pass them to the above 4 functions
-#define NON_BLOCKING   UINT64_C(0)
-#define BLOCKING       UINT64_MAX
-
 static inline int pthread_cond_init_with_monotonic_clock(pthread_cond_t *cond)
 {
 	pthread_condattr_t attr;
@@ -67,9 +61,20 @@ int pthread_cond_timedwait_for_timespec(pthread_cond_t *restrict cond, pthread_m
 	return result;
 }
 
+// you may use all possible uint64_t values for the above pthread_cond_timedwait_for_*seconds() functions
+// but there are special values you need to take care of given below, this gives immense flexibility to wait NON_BLOCKINGly, BLOCKINGly or with a fixed positive timeout duration
+#define NON_BLOCKING   UINT64_C(0)
+#define BLOCKING       UINT64_MAX
+
 #define pthread_cond_timedwait_for_(unit)                                                                                                                  \
 static inline int pthread_cond_timedwait_for_ ## unit (pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, uint64_t* duration_ ## unit)        \
 {                                                                                                                                                          \
+	if((*duration_ ## unit) == NON_BLOCKING) /* if it was suppossed to be a NON_BLOCKING call then timeout immediately */                                  \
+		return ETIMEDOUT;                                                                                                                                  \
+                                                                                                                                                           \
+	if((*duration_ ## unit) == BLOCKING) /* if it was suppossed to be a BLOCKING call then use the non-timeout version to wait */                          \
+		return pthread_cond_wait(cond, mutex);                                                                                                             \
+                                                                                                                                                           \
 	struct timespec duration = timespec_from_ ## unit(*duration_ ## unit);                                                                                 \
                                                                                                                                                            \
 	int result = pthread_cond_timedwait_for_timespec(cond, mutex, &duration);                                                                              \

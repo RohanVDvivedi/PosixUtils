@@ -3,6 +3,7 @@
 
 #include<stdint.h>
 #include<pthread.h>
+#include<errno.h> // only for ETIMEDOUT
 
 #include<posixutils/timespec_utils.h>
 
